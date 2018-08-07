@@ -19,12 +19,15 @@ def main():
     # 保存的图片质量
     save_q = 100
     #图片读取和保存路径
-    srcPath = int(sys.argv[3])
-    savePath = int(sys.argv[4])
+    srcPath = sys.argv[3]
+    savePath = sys.argv[4]
     if dst_hm is None or srcPath is None or savePath is None or dst_wm is None:
         return
     h_ext = 0
     w_ext = 0
+    if not os.path.exists(savePath):
+        path_get = os.path.dirname(savePath)
+        ImageCompressUtil().mkdir(path_get)
     if os.path.exists(srcPath) and len(os.path.basename(srcPath).split('.')) > 1:
 
         im_j = Image.open(srcPath)

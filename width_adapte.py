@@ -17,11 +17,13 @@ def main():
     # 保存的图片质量
     save_q = 100  # int(sys.argv[3])
     #图片读取和保存路径
-    srcPath = int(sys.argv[2])#'D:\\picSet\\cutPic\\src\\1905.jpg'
-    savePath = int(sys.argv[3])#'D:\\picSet\\cutPic\\src\\YSDXTEST\\save1-1-' + str(save_q) + '.jpg'
+    srcPath = sys.argv[2]#'D:\\picSet\\cutPic\\src\\1905.jpg'
+    savePath = sys.argv[3]#'D:\\picSet\\cutPic\\src\\YSDXTEST\\save1-1-' + str(save_q) + '.jpg'
     if dst_h is None or srcPath is None or savePath is None:
         return
-
+    if not os.path.exists(savePath):
+        path_get = os.path.dirname(savePath)
+        ImageCompressUtil().mkdir(path_get)
     if os.path.exists(srcPath) and len(os.path.basename(srcPath).split('.')) > 1:
         image_chang = ImageCompressUtil().resizeImg(
             ori_img=srcPath,
